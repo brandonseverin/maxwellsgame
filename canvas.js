@@ -22,14 +22,10 @@ var c = canvas.getContext('2d');
 //c.lineTo(400,300);
 //c.strokeStyle = 'blue'; // add colour to line
 //c.stroke();
-//
-// Arc/circle
-c.beginPath(); // stops arc from connecting to previous shapes/lines
-// //c.arc(x: Int, y: Int, radius: Int, startAngle: Float IN RADIANS,
-// 	endAngle: float in radians, drawCounterClockwise: Bool (false))
-c.arc(300,300,30, 0, Math.PI * 2, false); // create outline for arc
-c.strokeStyle = 'black';
-c.stroke(); // fill arc outline in
+
+// Loading Please wait initially to canvas before being cleared
+c.fillStyle = 'black';
+c.fillText('Loading, Please wait', innerWidth/2, innerHeight/2);
 
 var mouse = {
 	x: undefined,
