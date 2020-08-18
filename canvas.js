@@ -57,7 +57,13 @@ window.addEventListener('resize', function() {
 // Add event listeners for arrow key control of gate
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
-
+// Mouse and touch input
+document.addEventListener('mousedown', mouseDownHandler, false);
+document.addEventListener('mouseup', mouseUpHandler, false);
+//document.addEventListener("touchstart", process_touchstart, false);
+//document.addEventListener('touchmove', process_touchmove, false);
+//document.addEventListener('touchcancel', process_touchcancel, false);
+//document.addEventListener('touchend', process_touchend, false);
 // frame rate of game 
 //window.onload = ()=> {
 //	var canvas = document.querySelector('canvas');
@@ -154,6 +160,18 @@ function keyUpHandler(e){
 
 	e.preventDefault();
 }
+function mouseDownHandler(e) {
+	e.preventDefault();
+	spacePressed = true;
+}
+
+function mouseUpHandler(e) {
+	e.preventDefault();
+	spacePressed = false;
+}
+
+
+
 function gateControl() {
 	//if(downPressed){
 	//	gateY += keySensitivity;
