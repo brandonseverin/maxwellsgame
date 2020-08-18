@@ -98,7 +98,7 @@ var gapSize = maxRadius * 4.5;
 // Gate variables
 var mingateWidth= 10;
 var gateWidth = mingateWidth;
-var mingateHeight = gapSize* 1.2;
+var mingateHeight = gapSize;
 var gateHeight = mingateHeight;
 var gateY = innerHeight/2 - gateHeight/2;
 var gateX = innerWidth/2 - gateWidth/2;
@@ -155,18 +155,18 @@ function keyUpHandler(e){
 	e.preventDefault();
 }
 function gateControl() {
-	if(downPressed){
-		gateY += keySensitivity;
-		if (gateY + gateHeight > innerHeight){
-			gateY = innerHeight - gateHeight;
-		}
-	}
-	else if(upPressed){
-		gateY -= keySensitivity;
-		if (gateY < 0) {
-			gateY = 0;
-		}
-	}
+	//if(downPressed){
+	//	gateY += keySensitivity;
+	//	if (gateY + gateHeight > innerHeight){
+	//		gateY = innerHeight - gateHeight;
+	//	}
+	//}
+	//else if(upPressed){
+	//	gateY -= keySensitivity;
+	//	if (gateY < 0) {
+	//		gateY = 0;
+	//	}
+	//}
 	// Add spacebar make gate disappear xxx
 	if(spacePressed){
 		gateWidth = 0;
