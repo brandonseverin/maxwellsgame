@@ -87,7 +87,7 @@ var colorArray1 = [
 ];
 // Circle properties
 var initradius = 10;
-var numCircles = 20;
+var numCircles = 10;
 var fastCircleSpeed = 4;
 var slowCircleSpeed = 1;
 var colorArray = ['red','blue'];
@@ -249,7 +249,15 @@ function scoring(){
 			rightRed++;
 			c.fillStyle = 'white';
 			c.fillText(rightRed, innerWidth - 200,100);
-		}}
+		}
+		// game over alert
+		//if(leftBlue > 0 && rightRed == 0 ){
+			//alert("GAME OVER");
+			//document.location.reload();
+			//clearInterval(interval);
+		//}
+
+	}
 
 }
 
@@ -323,9 +331,6 @@ function Circle(x, y, dx, dy, radius, color) {
 	}
 
 	this.update = function() {
-		// Count Circles
-		scoring();
-
 		// Check Circle - circle collision detection	
 		detectCollisions();
 		// Check collisions with canvas edges
@@ -480,36 +485,20 @@ function animate() {
 	// Add keyboard control to paddle
 	gateControl();
 
-	// Test score display
-	scoring();
 	// Load up and draw circles
 	for (var i = 0; i < circleArray.length; i++){
 	
 		circleArray[i].update();
 	}
 
-	//Circle.draw();
-	//// Arc/circle
-	//c.beginPath(); // stops arc from connecting to previous shapes/lines
-	//c.arc(x, y, radius, 0, Math.PI * 2, false); // create outline for arc
-	//c.strokeStyle = 'black';
-	//c.stroke(); // fill arc outline in
-
-	//if(x + radius > innerWidth || x - radius < 0) {
-	//	dx = -dx;
-	//}
-	//if(y + radius > innerHeight || y - radius < 0) {
-	//	dy = -dy;
-	//}
-	//
-	//
-	//y += dy;
-	//x += dx;
+	// scoring
+	scoring();
+	
 	console.log('animating: fdskaljlas')
 }
 
 init();
-setInterval(animate,10); // control frame per second of animation
+var interval = setInterval(animate,10); // control frame per second of animation
 //animate();
 // create hundreds of circles
 //for (var i = 0; i < 3; i++) {
