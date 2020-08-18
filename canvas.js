@@ -60,10 +60,10 @@ document.addEventListener("keyup", keyUpHandler, false);
 // Mouse and touch input
 document.addEventListener('mousedown', mouseDownHandler, false);
 document.addEventListener('mouseup', mouseUpHandler, false);
-//document.addEventListener("touchstart", process_touchstart, false);
+document.addEventListener("touchstart", touchStartHandler, false);
 //document.addEventListener('touchmove', process_touchmove, false);
 //document.addEventListener('touchcancel', process_touchcancel, false);
-//document.addEventListener('touchend', process_touchend, false);
+document.addEventListener('touchend', touchEndHandler, false);
 // frame rate of game 
 //window.onload = ()=> {
 //	var canvas = document.querySelector('canvas');
@@ -169,7 +169,14 @@ function mouseUpHandler(e) {
 	e.preventDefault();
 	spacePressed = false;
 }
-
+function touchStartHandler(e){
+	e.preventDefault();
+	spacedPressed = true;
+}
+function touchEndHandler(e){
+	e.preventDefault;
+	spacePressed = false;
+}
 
 
 function gateControl() {
