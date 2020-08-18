@@ -219,11 +219,40 @@ function centerLine() {
 
 // Scoring function
 function scoring(){
-	// display to canvas
-	let score=0;
-	c.fillText(score, 100,100);
+	let obj1;
+	let score;
+	let leftRed = 0;
+	let leftBlue = 0;
+	let rightRed = 0;
+	let rightBlue = 0;
+	// Collect object details
+	for (let i = 0; i < circleArray.length; i++){
+		obj1 = circleArray[i];
+
+		if (obj1.x < innerWidth/2 && obj1.color == 'red'){
+			leftRed++;
+			// Display to canvas
+			c.fillStyle = 'white';
+			c.fillText(leftRed, 100,100);
+		}
+		if (obj1.x < innerWidth/2 && obj1.color == 'blue'){
+			leftBlue++;
+			c.fillStyle = 'white';
+			c.fillText(leftBlue, 200,100);
+		}
+		if (obj1.x > innerWidth/2 && obj1.color == 'blue'){
+			rightBlue++;
+			c.fillStyle = 'white';
+			c.fillText(rightBlue, innerWidth - 100,100);
+		}	
+		if (obj1.x > innerWidth/2 && obj1.color == 'red'){
+			rightRed++;
+			c.fillStyle = 'white';
+			c.fillText(rightRed, innerWidth - 200,100);
+		}}
 
 }
+
 function centerWall(color= 'rgba(255,0,0,0.1)', posX = innerWidth/2 - wallWidth/2, posY = 0, widthX = wallWidth, lenY = innerHeight) {
 	// Create a rectangle
 	// Fill rect takes what ever fill style before
@@ -294,8 +323,10 @@ function Circle(x, y, dx, dy, radius, color) {
 	}
 
 	this.update = function() {
-		// Check Circle - circle collision detection
-		
+		// Count Circles
+		scoring();
+
+		// Check Circle - circle collision detection	
 		detectCollisions();
 		// Check collisions with canvas edges
 		if(this.x + this.radius > innerWidth || this.x - this.radius < 0) {
