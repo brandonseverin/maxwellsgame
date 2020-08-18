@@ -217,6 +217,13 @@ function centerLine() {
 	c.stroke();
 }
 
+// Scoring function
+function scoring(){
+	// display to canvas
+	let score=0;
+	c.fillText(score, 100,100);
+
+}
 function centerWall(color= 'rgba(255,0,0,0.1)', posX = innerWidth/2 - wallWidth/2, posY = 0, widthX = wallWidth, lenY = innerHeight) {
 	// Create a rectangle
 	// Fill rect takes what ever fill style before
@@ -442,6 +449,8 @@ function animate() {
 	// Add keyboard control to paddle
 	gateControl();
 
+	// Test score display
+	scoring();
 	// Load up and draw circles
 	for (var i = 0; i < circleArray.length; i++){
 	
