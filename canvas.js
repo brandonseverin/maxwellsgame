@@ -70,10 +70,6 @@ document.addEventListener("keyup", keyUpHandler, false);
 	//})
 //}
 
-// Initiate circle variables
-var maxRadius = 40;
-var minRadius = 40;
-
 // Can use Kuler to create/choose color palettes
 var colorArray1 = [
 	'#ffaa33',
@@ -83,25 +79,32 @@ var colorArray1 = [
 	'#ff1100'
 
 ];
-var colorArray = ['blue', 'red'];
-var initradius = 40;
-var numCircles = 10;
-var fastCircleSpeed = 2;
+// Circle properties
+var initradius = 10;
+var numCircles = 20;
+var fastCircleSpeed = 4;
 var slowCircleSpeed = 1;
+var colorArray = ['red','blue'];
 var circleSpeedArray = [fastCircleSpeed, slowCircleSpeed];
 var circleArray = [];
+// Variables for mouse interaction
+var maxRadius = initradius * 1.10;
+var minRadius = initradius;
+
 
 // Gap size for balls to pass through
-var gapSize = maxRadius * 2.5;
+var gapSize = maxRadius * 4.5;
 
 // Gate variables
-var gateWidth = 10;
-var gateHeight = gapSize*2;
+var mingateWidth= 10;
+var gateWidth = mingateWidth;
+var mingateHeight = gapSize* 1.2;
+var gateHeight = mingateHeight;
 var gateY = innerHeight/2 - gateHeight/2;
 var gateX = innerWidth/2 - gateWidth/2;
 var gateColor = 'white';
 
-var wallWidth = gateWidth;
+var wallWidth = gateWidth * 1.1;
 var wallHeight = innerHeight/2 - gapSize/2;
 var wallColor = 'black';
 
@@ -130,7 +133,7 @@ function keyDownHandler(e){
 	else if(e.key == "Down" || e.key == "ArrowDown" || e.key == "j"){
 		downPressed = true;
 	}
-	else if(e.key == " " || e.key == "Spacebar"){
+	else if(e.key == " " || e.key == "Spacebar" || e.key == "x"){
 		spacePressed = true;
 	}
 
@@ -145,7 +148,7 @@ function keyUpHandler(e){
 	else if(e.key == "Down" || e.key == "ArrowDown" || e.key == "j"){
 		downPressed = false;
 	}
-	else if(e.key == " " || e.key == "Spacebar"){
+	else if(e.key == " " || e.key == "Spacebar" || e.key == "x"){
 		spacePressed = false;
 	}
 
@@ -165,9 +168,14 @@ function gateControl() {
 		}
 	}
 	// Add spacebar make gate disappear xxx
-	//else if(spacePressed){
-		//gateWidth = 0;
-		//gateHeight = 0;
+	if(spacePressed){
+		gateWidth = 0;
+		gateHeight = 0;
+	}else{
+		gateWidth = mingateWidth;
+		gateHeight = mingateHeight;
+	}
+	
 	// need to find a way of making the gate reAppear may need object orientated programming - simialr to what is down with the circles and their mouse interactivity.
 	//}
 
@@ -191,8 +199,45 @@ function centerWall(color= 'rgba(255,0,0,0.1)', posX = innerWidth/2 - wallWidth/
 	c.fillRect(posX, posY, widthX, lenY); // colour rectangle
 }
 
+// Circle intersection
+function circleIntersect(x1, y1, r1, x2, y2, r2){
+	// Calculate the distance between the two circles
+	let squareDistance = (x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2);
+
+	// when the distance is smaller or equal to the sum 
+	// of the two radius, the circles touch or overlap
+	return squareDistance <= ((r1 + r2) * (r1 + r2));
+}
+
+// Collision detection
+function detectCollisions(){
+	let obj1;
+	let obj2;
+
+	// Reset collision state of all objects
+	for (let i = 0; i < circleArray.length; i++){
+		circleArray[i].isColliding = false;
+	}
+
+	// Start checking for collisions
+	for (let i = 0; i < circleArray.length; i++){
+
+		obj1 = circleArray[i];
+		
+		for (let j = i + 1; j < circleArray.length; j++)
+		{
+			obj2 = circleArray[j];
+
+			// Compare object 1 with object2
+			if (circleIntersect(obj1.x, obj1.y, obj1.radius, obj2.x, obj2.y, obj2.radius)){
+				obj1.isColliding = true;
+				obj2.isColliding = true;
+			}
+		}
+	}
+}
 // Captital letter signifies object 
-function Circle(x, y, dx, dy, radius) {
+function Circle(x, y, dx, dy, radius, color) {
 	// define variables
 	this.x = x;
 	this.y = y;
@@ -200,7 +245,10 @@ function Circle(x, y, dx, dy, radius) {
 	this.dy = dy;
 	this.radius = radius;
 	this.minRadius = radius;
-	this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
+	this.color = color;
+
+	this.isColliding = false;
+	//this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
 
 	this.draw = function() {
 		// Arc/circle
@@ -208,12 +256,16 @@ function Circle(x, y, dx, dy, radius) {
 		c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false); // create outline for arc
 		c.strokeStyle = 'black';
 		//c.stroke(); // fill arc outline in
-		c.fillStyle = this.color; 
+		c.fillStyle = this.isColliding?'black':this.color; 
 		c.fill();
 		console.log('circle drawn');	
 	}
 
 	this.update = function() {
+		// Check Circle - circle collision detection
+		
+		detectCollisions();
+		// Check collisions with canvas edges
 		if(this.x + this.radius > innerWidth || this.x - this.radius < 0) {
 				this.dx = -this.dx;
 		}
@@ -310,7 +362,7 @@ function init() {
 	for (var i = 0; i < numCircles; i++) {
 		// Initiate random radius value between 1 and 4
 		//var radius = Math.random() * 40 + 1; // chris course
-		var radius = initradius * 1;
+		var radius = initradius;
 		// Make sure circle don't fall within wall and gate
 		do { // reapeat until not in wall/gate
 		// Initiate random x, y coordinates for each circle
@@ -327,8 +379,10 @@ function init() {
 		// Initiate directions/trajectories of circles
 		var theta = Math.random() * 2 * Math.PI; // brandon
 		// Initiate velocities of circles
-		var dx = circleSpeedArray[Math.floor(Math.random()*circleSpeedArray.length)] * Math.cos(theta);// brandon
-		var dy = circleSpeedArray[Math.floor(Math.random()*circleSpeedArray.length)] * Math.sin(theta);// brandon
+		let index = Math.floor(Math.random()*circleSpeedArray.length);
+		var dx = circleSpeedArray[index] * Math.cos(theta);// brandon
+		var dy = circleSpeedArray[index] * Math.sin(theta);// brandon
+		var color = colorArray[index];
 		//var dx = fastCircleSpeed * Math.cos(theta);// brandon
 		//var dy = fastCircleSpeed * Math.sin(theta);
 		//var dx = (Math.round(Math.random()) * 2 - 1) * fastCircleSpeed;		
@@ -337,7 +391,7 @@ function init() {
 		//var dy = (Math.random() - 0.5) * 8;
 
 	// Instantiate circle and store into array
-		circleArray.push(new Circle(x, y, dx, dy, radius));
+		circleArray.push(new Circle(x, y, dx, dy, radius, color));
 		console.log(circleArray);
 		// instatiate circle
 		//var circle = new Circle(x, y, dx, dy, radius);
