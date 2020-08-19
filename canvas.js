@@ -231,24 +231,19 @@ function scoring(){
 
 		if (obj1.x < innerWidth/2 && obj1.color == 'red'){
 			leftRed++;
-			// Display to canvas
-			c.fillStyle = 'white';
-			c.fillText(leftRed, 100,100);
+			
+			
+			
 		}
 		if (obj1.x < innerWidth/2 && obj1.color == 'blue'){
 			leftBlue++;
-			c.fillStyle = 'white';
-			c.fillText(leftBlue, 200,100);
 		}
 		if (obj1.x > innerWidth/2 && obj1.color == 'blue'){
 			rightBlue++;
-			c.fillStyle = 'white';
-			c.fillText(rightBlue, innerWidth - 100,100);
 		}	
 		if (obj1.x > innerWidth/2 && obj1.color == 'red'){
 			rightRed++;
 			c.fillStyle = 'white';
-			c.fillText(rightRed, innerWidth - 200,100);
 		}
 		// game over alert
 		//if(leftBlue > 0 && rightRed == 0 ){
@@ -258,7 +253,28 @@ function scoring(){
 		//}
 
 	}
+	// Display to canvas
+	c.fillStyle = 'white';
+	c.fillText(leftRed, 100,100);	
+	c.fillText(leftBlue, 200,100);
+	c.fillText(rightBlue, innerWidth - 100,100);
+	c.fillText(rightRed, innerWidth - 200,100);
+	
+	return {
+		leftSlow: leftBlue, 
+		leftFast: leftRed,
+		rightSlow: rightBlue,
+		rightFast: rightRed
+	};
 
+}
+// Game over alert
+function alertGameOver(lslow, lfast, rslow, rfast){
+	if ((lslow == 0 && rfast ==0) || (lfast == 0 && rslow == 0)){
+		alert("GAME OVER");
+		//document.location.reload(); // reload page
+		clearInterval(interval); // necessary for google chrome to reload the page
+	}
 }
 
 function centerWall(color= 'rgba(255,0,0,0.1)', posX = innerWidth/2 - wallWidth/2, posY = 0, widthX = wallWidth, lenY = innerHeight) {
@@ -492,7 +508,10 @@ function animate() {
 	}
 
 	// scoring
-	scoring();
+	let count = scoring();
+	//GAme over alert
+	alertGameOver(count.leftSlow, count.leftFast, count.rightSlow, count.rightFast);
+	
 	
 	console.log('animating: fdskaljlas')
 }
