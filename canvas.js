@@ -41,7 +41,7 @@ window.addEventListener('mousemove', function(event) {
 	mouse.x = event.x;
 	mouse.y = event.y;
 
-	console.log(event)
+	console.log(event);
 	// gate control
 	//gateY = event.clientY - gateHeight/2;
 })
@@ -51,7 +51,8 @@ window.addEventListener('resize', function() {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 
-	init()
+	init();
+	initWall();
 })
 
 // Add event listeners for arrow key control of gate
@@ -87,7 +88,7 @@ var colorArray1 = [
 ];
 // Circle properties
 var initradius = 10;
-var numCircles = 10;
+var numCircles = 2;
 var fastCircleSpeed = 4;
 var slowCircleSpeed = 1;
 var colorArray = ['red','blue'];
@@ -217,6 +218,29 @@ function centerLine() {
 	c.stroke();
 }
 
+// Factorial function for calculating the Shannon Entropy
+function factorial(n) {
+  return n ? n * factorial(n - 1) : 1;
+}
+
+// Shannon Entropy function 
+function shannonEntropy(lslow, lfast, rslow, rfast) {
+	let slowTotal = lslow + rslow;
+	let slown = Math.min(lslow, rslow);
+	let fastTotal = lfast + rfast;
+	let fastn = Math.min(lfast, rfast);
+	let omega;
+	let S;
+
+
+	omega = factorial(fastTotal)/(factorial(fastn) * factorial(fastTotal- fastn)) * factorial(slowTotal)/(factorial(slown) * factorial(slowTotal - slown));
+
+	S = Math.log(omega);
+
+	return S;
+}
+
+
 // Scoring function
 function scoring(){
 	let obj1;
@@ -260,6 +284,13 @@ function scoring(){
 	c.fillText(rightBlue, innerWidth - 100,100);
 	c.fillText(rightRed, innerWidth - 200,100);
 	
+	// Calculate Shannon Entropy and Print to canvas
+	let S;
+	S = shannonEntropy(leftBlue, leftRed, rightBlue, rightRed);
+	c.fillText(S, 100,innerHeight-100);
+
+
+	// Return ball numbers
 	return {
 		leftSlow: leftBlue, 
 		leftFast: leftRed,
@@ -438,6 +469,39 @@ function Circle(x, y, dx, dy, radius, color) {
 		this.draw();
 		
 	}
+
+}
+
+// Initialisations of central wall coordinates
+function initWall(){
+	var gateWidth = mingateWidth;
+	var mingateHeight = gapSize;
+	var gateHeight = mingateHeight;
+	var gateY = innerHeight/2 - gateHeight/2;
+	var gateX = innerWidth/2 - gateWidth/2;
+	var gateColor = 'white';
+
+	var wallWidth = gateWidth * 1.1;
+	var wallHeight = innerHeight/2 - gapSize/2;
+	var wallColor = 'black';
+
+	var centerWallTop_posX = innerWidth/2 - wallWidth/2;
+	var centerWallTop_posY = 0 ; 
+	var centerWall_Width = wallWidth;
+	var centerWall_lenY = innerHeight/2 - gapSize/2;
+
+	// Bottom wall variables
+	var lowerWallX = innerWidth/2 - wallWidth/2;
+	var lowerWallY = innerHeight/2 + gapSize/2;
+
+	//wallArray = [];
+	//	
+	//let x = innerWidth/2;
+	//let y = 0;
+	//let w = wallWidth;
+	//let h = wallHeight;
+
+	//wallArray.push(x,y,w,h);
 
 }
 
