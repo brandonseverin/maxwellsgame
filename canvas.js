@@ -249,6 +249,8 @@ function scoring(){
 	let leftBlue = 0;
 	let rightRed = 0;
 	let rightBlue = 0;
+	let S; // Shannon entropy
+
 	// Collect object details
 	for (let i = 0; i < circleArray.length; i++){
 		obj1 = circleArray[i];
@@ -277,17 +279,17 @@ function scoring(){
 		//}
 
 	}
-	// Display to canvas
-	c.fillStyle = 'white';
-	c.fillText(leftRed, 100,100);	
-	c.fillText(leftBlue, 200,100);
-	c.fillText(rightBlue, innerWidth - 100,100);
-	c.fillText(rightRed, innerWidth - 200,100);
+	// (Debgging) Display to Canvas
+	//c.fillStyle = 'white';
+	//c.fillText(leftRed, 100,100);	
+	//c.fillText(leftBlue, 200,100);
+	//c.fillText(rightBlue, innerWidth - 100,100);
+	//c.fillText(rightRed, innerWidth - 200,100);
 	
-	// Calculate Shannon Entropy and Print to canvas
-	let S;
+	// Calculate Shannon Entropy 
 	S = shannonEntropy(leftBlue, leftRed, rightBlue, rightRed);
-	c.fillText(S, 100,innerHeight-100);
+	// (Debugging) Print Shannon entropy to canvas
+	//c.fillText(S, 100,innerHeight-100);
 	// Print Shannon Entropy to html with 5 significant figures 
 	document.getElementById('ShannonEntropy').innerHTML = Number(S.toPrecision(5));
 
