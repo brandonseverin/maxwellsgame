@@ -88,7 +88,7 @@ var colorArray1 = [
 ];
 // Circle properties
 var initradius = 10;
-var numCircles = 2;
+var numCircles = 5;
 var fastCircleSpeed = 4;
 var slowCircleSpeed = 1;
 var colorArray = ['red','blue'];
@@ -288,6 +288,8 @@ function scoring(){
 	let S;
 	S = shannonEntropy(leftBlue, leftRed, rightBlue, rightRed);
 	c.fillText(S, 100,innerHeight-100);
+	// Print Shannon Entropy to html with 5 significant figures 
+	document.getElementById('ShannonEntropy').innerHTML = Number(S.toPrecision(5));
 
 
 	// Return ball numbers
