@@ -12,9 +12,28 @@
 		margin: 0;
 	}
 	</style>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
 <body>
-	<canvas></canvas>
+	<div class="container">
+		<div class="box">
+			<h1>Maxwell's Demon</h1>
+			<h2><a id = 'groupLink' href="https://www.natalia-ares.com/">The Natalia Ares Group</a></h2>
+			<h3>
+			  <a href="https://github.com/brandonseverin/maxwellsdemon/blob/master/README.md">INFO</a>
+			  <a href="https://brandonseverin.carrd.co">AUTHOR</a>
+			  <a href="https://github.com/brandonseverin/maxwellsdemon">SOURCE CODE</a>
+			  <a href="https://github.com/brandonseverin/maxwellsdemon">RETURN TO BOOTH</a>
+			  <button onclick="toggleDebug()"><i class="fas fa-cogs"></i></button>
+			</h3>
+		</div>
+	</div>
+
+	<canvas id = 'canvas'>
+		Canvas not supported
+	</canvas>
+	
 	<script src="canvas.js"></script>
 </body>	
 </html>
