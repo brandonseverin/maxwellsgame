@@ -2,13 +2,17 @@
 
 An outreach project I am working on for the Natalia Ares Group in the University of Oxford. This is my first time playing with javascript, hopefully the game won't be too buggy :wink:.
 
-## Quick Start Guide
+## Quickstart Guide
 
 - Use the  `space bar` on your keyboard to open and close the central trapdoor
 - Try to collect all the (hot) fast moving red  particles on one side of the box and the (cold) slow moving blue particles on the other side of the box.
 - Can you create order from disorder?
 
+## FAQs
 
+- *The `space bar` on my keyboard does not work. Can I still play the game?*
+
+  Yes you can! You can use the `X` or the `O` key to open and close the trapdoor.
 
 ## Acknowledgements 
 
