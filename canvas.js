@@ -85,8 +85,8 @@ var colorArray1 = [
 // Circle properties
 var initradius = 10;
 var numCircles = 20;
-var fastCircleSpeed = 4;
-var slowCircleSpeed = 1;
+var fastCircleSpeed = 4; // original speed is 4 for fast
+var slowCircleSpeed = 1; // original speed is 1 for slow
 var colorArray = ['red','blue'];
 var circleSpeedArray = [fastCircleSpeed, slowCircleSpeed];
 var circleArray = [];
