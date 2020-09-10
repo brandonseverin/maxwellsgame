@@ -29,12 +29,14 @@ body {
   flex-shrink: 0;
 }
 #info-box {
+	display: block;
+}
+
+#info-button {
 	display: none;
 }
-.button {
-}
+
 .button button {
-	display: block;
 	bottom: 5;
 	left: 0;
 	cursor: pointer;
