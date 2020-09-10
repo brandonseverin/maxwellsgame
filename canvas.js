@@ -88,7 +88,7 @@ var colorArray1 = [
 ];
 // Circle properties
 var initradius = 10;
-var numCircles = 5;
+var numCircles = 20;
 var fastCircleSpeed = 4;
 var slowCircleSpeed = 1;
 var colorArray = ['red','blue'];
@@ -162,20 +162,20 @@ function keyUpHandler(e){
 	e.preventDefault();
 }
 function mouseDownHandler(e) {
-	e.preventDefault();
+	//e.preventDefault();
 	spacePressed = true;
 }
 
 function mouseUpHandler(e) {
-	e.preventDefault();
+	//e.preventDefault();
 	spacePressed = false;
 }
 function touchStartHandler(e){
-	e.preventDefault();
+	//e.preventDefault();
 	spacedPressed = true;
 }
 function touchEndHandler(e){
-	e.preventDefault;
+	//e.preventDefault;
 	spacePressed = false;
 }
 
