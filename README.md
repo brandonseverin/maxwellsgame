@@ -6,7 +6,7 @@ An outreach project I am working on for the Natalia Ares Group in the University
 
 - Use the  `space bar` on your keyboard to open and close the central trapdoor
 - Try to collect all the (hot) fast moving red  particles on one side of the box and the (cold) slow moving blue particles on the other side of the box.
-- Can you create order from disorder?
+- Can you create order from disorder? Click [here](https://brandonseverin.github.io/maxwellsdemon/) to start playing.
 
 ## FAQs
 
