@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Canvas Resize</title>
+	<title>Maxwell's Demon</title>
 	<style type="text/css">
 		canvas {
 			border: 1px solid black;
@@ -12,9 +12,32 @@
 		margin: 0;
 	}
 	</style>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
 <body>
-	<canvas></canvas>
+	<div class="container">
+		<div class="box" id ="info-box">
+			<h1>Maxwell's Demon</h1>
+			<h2><a id = 'groupLink' href="https://www.natalia-ares.com/">The Natalia Ares Group</a></h2>
+			<p> Shannon Entropy = <span id="ShannonEntropy"></span></p>
+			<h3>
+			  <a href="https://github.com/brandonseverin/maxwellsdemon/blob/master/README.md">INFO</a>
+			  <a href="https://brandonseverin.carrd.co">AUTHOR</a>
+			  <a href="https://github.com/brandonseverin/maxwellsdemon">SOURCE CODE</a>
+			  <a href="https://example.com/">RETURN TO BOOTH</a>
+			  <a onclick="toggleInfoBox()">HIDE</a>
+			</h3>
+		</div>
+		<div class="button" id="info-button">
+			<button onclick="toggleInfoBox()"><i class="far fa-question-circle"></i></button>
+		</div>
+	</div>
+
+	<canvas id = 'canvas'>
+		Canvas not supported
+	</canvas>
+	
 	<script src="canvas.js"></script>
 </body>	
 </html>

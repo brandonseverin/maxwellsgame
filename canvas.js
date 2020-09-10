@@ -37,7 +37,7 @@ window.addEventListener('mousemove', function(event) {
 	mouse.x = event.x;
 	mouse.y = event.y;
 
-	console.log(event)
+	console.log(event);
 	// gate control
 	//gateY = event.clientY - gateHeight/2;
 })
@@ -47,7 +47,8 @@ window.addEventListener('resize', function() {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 
-	init()
+	init();
+	initWall();
 })
 
 // Add event listeners for arrow key control of gate
@@ -157,20 +158,20 @@ function keyUpHandler(e){
 	e.preventDefault();
 }
 function mouseDownHandler(e) {
-	e.preventDefault();
+	//e.preventDefault();
 	spacePressed = true;
 }
 
 function mouseUpHandler(e) {
-	e.preventDefault();
+	//e.preventDefault();
 	spacePressed = false;
 }
 function touchStartHandler(e){
-	e.preventDefault();
+	//e.preventDefault();
 	spacedPressed = true;
 }
 function touchEndHandler(e){
-	e.preventDefault;
+	//e.preventDefault;
 	spacePressed = false;
 }
 
@@ -201,6 +202,18 @@ function gateControl() {
 	//}
 
 }
+function toggleInfoBox() {
+	let x = document.getElementById("info-box");
+	let y = document.getElementById("info-button");
+
+	if (y.style.display === "none") {
+		y.style.display = "block";
+		x.style.display = "none";
+	} else {
+		y.style.display = "none";
+		x.style.display = "block";
+	}
+}
 // Draw center partition
 // Line
 function centerLine() {
@@ -211,6 +224,100 @@ function centerLine() {
 	//c.lineTo(400,300);
 	c.strokeStyle = 'black'; // add colour to line
 	c.stroke();
+}
+
+// Factorial function for calculating the Shannon Entropy
+function factorial(n) {
+  return n ? n * factorial(n - 1) : 1;
+}
+
+// Shannon Entropy function 
+function shannonEntropy(lslow, lfast, rslow, rfast) {
+	let slowTotal = lslow + rslow;
+	let slown = Math.min(lslow, rslow);
+	let fastTotal = lfast + rfast;
+	let fastn = Math.min(lfast, rfast);
+	let omega;
+	let S;
+
+
+	omega = factorial(fastTotal)/(factorial(fastn) * factorial(fastTotal- fastn)) * factorial(slowTotal)/(factorial(slown) * factorial(slowTotal - slown));
+
+	S = Math.log(omega);
+
+	return S;
+}
+
+
+// Scoring function
+function scoring(){
+	let obj1;
+	let score;
+	let leftRed = 0;
+	let leftBlue = 0;
+	let rightRed = 0;
+	let rightBlue = 0;
+	let S; // Shannon entropy
+
+	// Collect object details
+	for (let i = 0; i < circleArray.length; i++){
+		obj1 = circleArray[i];
+
+		if (obj1.x < innerWidth/2 && obj1.color == 'red'){
+			leftRed++;
+			
+			
+			
+		}
+		if (obj1.x < innerWidth/2 && obj1.color == 'blue'){
+			leftBlue++;
+		}
+		if (obj1.x > innerWidth/2 && obj1.color == 'blue'){
+			rightBlue++;
+		}	
+		if (obj1.x > innerWidth/2 && obj1.color == 'red'){
+			rightRed++;
+			c.fillStyle = 'white';
+		}
+		// game over alert
+		//if(leftBlue > 0 && rightRed == 0 ){
+			//alert("GAME OVER");
+			//document.location.reload();
+			//clearInterval(interval);
+		//}
+
+	}
+	// (Debgging) Display to Canvas
+	//c.fillStyle = 'white';
+	//c.fillText(leftRed, 100,100);	
+	//c.fillText(leftBlue, 200,100);
+	//c.fillText(rightBlue, innerWidth - 100,100);
+	//c.fillText(rightRed, innerWidth - 200,100);
+	
+	// Calculate Shannon Entropy 
+	S = shannonEntropy(leftBlue, leftRed, rightBlue, rightRed);
+	// (Debugging) Print Shannon entropy to canvas
+	//c.fillText(S, 100,innerHeight-100);
+	// Print Shannon Entropy to html with 5 significant figures 
+	document.getElementById('ShannonEntropy').innerHTML = Number(S.toPrecision(5));
+
+
+	// Return ball numbers
+	return {
+		leftSlow: leftBlue, 
+		leftFast: leftRed,
+		rightSlow: rightBlue,
+		rightFast: rightRed
+	};
+
+}
+// Game over alert
+function alertGameOver(lslow, lfast, rslow, rfast){
+	if ((lslow == 0 && rfast ==0) || (lfast == 0 && rslow == 0)){
+		alert("GAME OVER");
+		//document.location.reload(); // reload page
+		clearInterval(interval); // necessary for google chrome to reload the page
+	}
 }
 
 function centerWall(color= 'rgba(255,0,0,0.1)', posX = innerWidth/2 - wallWidth/2, posY = 0, widthX = wallWidth, lenY = innerHeight) {
@@ -283,8 +390,7 @@ function Circle(x, y, dx, dy, radius, color) {
 	}
 
 	this.update = function() {
-		// Check Circle - circle collision detection
-		
+		// Check Circle - circle collision detection	
 		detectCollisions();
 		// Check collisions with canvas edges
 		if(this.x + this.radius > innerWidth || this.x - this.radius < 0) {
@@ -378,6 +484,39 @@ function Circle(x, y, dx, dy, radius, color) {
 
 }
 
+// Initialisations of central wall coordinates
+function initWall(){
+	var gateWidth = mingateWidth;
+	var mingateHeight = gapSize;
+	var gateHeight = mingateHeight;
+	var gateY = innerHeight/2 - gateHeight/2;
+	var gateX = innerWidth/2 - gateWidth/2;
+	var gateColor = 'white';
+
+	var wallWidth = gateWidth * 1.1;
+	var wallHeight = innerHeight/2 - gapSize/2;
+	var wallColor = 'black';
+
+	var centerWallTop_posX = innerWidth/2 - wallWidth/2;
+	var centerWallTop_posY = 0 ; 
+	var centerWall_Width = wallWidth;
+	var centerWall_lenY = innerHeight/2 - gapSize/2;
+
+	// Bottom wall variables
+	var lowerWallX = innerWidth/2 - wallWidth/2;
+	var lowerWallY = innerHeight/2 + gapSize/2;
+
+	//wallArray = [];
+	//	
+	//let x = innerWidth/2;
+	//let y = 0;
+	//let w = wallWidth;
+	//let h = wallHeight;
+
+	//wallArray.push(x,y,w,h);
+
+}
+
 function init() {
 	circleArray = [];
 	for (var i = 0; i < numCircles; i++) {
@@ -444,28 +583,17 @@ function animate() {
 		circleArray[i].update();
 	}
 
-	//Circle.draw();
-	//// Arc/circle
-	//c.beginPath(); // stops arc from connecting to previous shapes/lines
-	//c.arc(x, y, radius, 0, Math.PI * 2, false); // create outline for arc
-	//c.strokeStyle = 'black';
-	//c.stroke(); // fill arc outline in
-
-	//if(x + radius > innerWidth || x - radius < 0) {
-	//	dx = -dx;
-	//}
-	//if(y + radius > innerHeight || y - radius < 0) {
-	//	dy = -dy;
-	//}
-	//
-	//
-	//y += dy;
-	//x += dx;
+	// scoring
+	let count = scoring();
+	//GAme over alert
+	alertGameOver(count.leftSlow, count.leftFast, count.rightSlow, count.rightFast);
+	
+	
 	console.log('animating: fdskaljlas')
 }
 
 init();
-setInterval(animate,10); // control frame per second of animation
+var interval = setInterval(animate,10); // control frame per second of animation
 //animate();
 // create hundreds of circles
 //for (var i = 0; i < 3; i++) {
