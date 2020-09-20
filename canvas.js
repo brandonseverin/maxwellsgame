@@ -159,12 +159,12 @@ function keyUpHandler(e){
 }
 function mouseDownHandler(e) {
 	//e.preventDefault();
-	//spacePressed = true;
+	spacePressed = true;
 }
 
 function mouseUpHandler(e) {
 	//e.preventDefault();
-	//spacePressed = false;
+	spacePressed = false;
 }
 function touchStartHandler(e){
 	//e.preventDefault();
