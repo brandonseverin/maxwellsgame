@@ -13,6 +13,10 @@ An outreach project I am working on for the Natalia Ares Group in the University
 - *The `space bar` on my keyboard does not work. Can I still play the game?*
 
   Yes you can! You can use the `X` or the `O` key to open and close the trapdoor.
+  
+- *I resized my window, did I break the game?*
+
+  The Demon in Maxwell's thought experiment was not allowed to change the size of the box. If you resize your window you must refresh the page and start the game again.
 
 ## Acknowledgements 
 
