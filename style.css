@@ -32,7 +32,7 @@ body {
 #quickstart-guide {
 	width: 400px;	
   	line-height: 20px;
-	text-justify: inter-word;
+	text-justify: auto;
 }
 
 #info-box {
