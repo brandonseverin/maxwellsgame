@@ -29,7 +29,7 @@ body {
   flex-shrink: 0;
 }
 #quickstart-guide {
-	overflow: auto;
+	display: none;
 }
 
 #info-box {

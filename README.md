@@ -8,6 +8,12 @@ An outreach project I am working on for the Natalia Ares Group in the University
 - Try to collect the (red) hot fast-moving particles on one side of the divide and the (blue) cold slow-moving particles on the other.
 - Can you create order from disorder? Click [here](https://brandonseverin.github.io/maxwellsdemon/) to start playing.
 
+## Introduction
+
+Here is a [short video excerpt](https://www.youtube.com/watch?v=11QkX4u6RJg) explaining the Maxwell's Demon thought experiment from Prof. Jim Al-Khalili's [*The Story of Information*](https://www.youtube.com/watch?v=qj7HH0PCqIE). 
+
+(more to follow)
+
 ## FAQs
 
 - *The `space bar` on my keyboard does not work. Can I still play the game?*
