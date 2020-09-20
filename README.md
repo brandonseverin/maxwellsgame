@@ -1,11 +1,11 @@
-# Maxwell's Demon
+# Maxwell's Game
 
 An outreach project I am working on for the Natalia Ares Group in the University of Oxford. This is my first time playing with javascript, hopefully the game won't be too buggy :wink:.
 
 ## Quickstart Guide
 
-- Use the  `space bar` on your keyboard to open and close the central trapdoor
-- Try to collect all the (hot) fast moving red  particles on one side of the box and the (cold) slow moving blue particles on the other side of the box.
+- Use the  `space bar` on your keyboard to open the central trapdoor
+- Try to collect the (red) hot fast-moving particles on one side of the divide and the (blue) cold slow-moving particles on the other.
 - Can you create order from disorder? Click [here](https://brandonseverin.github.io/maxwellsdemon/) to start playing.
 
 ## FAQs

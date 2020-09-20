@@ -26,8 +26,11 @@ body {
   margin-left: 20px;
   margin-bottom: 20px;
   padding: 5px 15px;
-  flex-shrink: 0;
 }
+#quickstart-guide {
+	overflow: auto;
+}
+
 #info-box {
 	display: block;
 }

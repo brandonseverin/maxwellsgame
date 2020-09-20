@@ -85,7 +85,7 @@ var colorArray1 = [
 // Circle properties
 var initradius = 10;
 var numCircles = 20;
-var fastCircleSpeed = 9; // original speed is 4 for fast, greatest speed shouldn't be greater than the smallest object (10)
+var fastCircleSpeed = 8; // original speed is 4 for fast, greatest speed shouldn't be greater than the smallest object (10)
 var slowCircleSpeed = 1; // original speed is 1 for slow
 var colorArray = ['red','blue'];
 var circleSpeedArray = [fastCircleSpeed, slowCircleSpeed];
@@ -96,7 +96,7 @@ var minRadius = initradius;
 
 
 // Gap size for balls to pass through
-var gapSize = maxRadius * 4.5;
+var gapSize = maxRadius * 8;
 
 // Gate variables
 var mingateWidth= 10;
