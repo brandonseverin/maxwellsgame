@@ -27,7 +27,14 @@ body {
   margin-bottom: 20px;
   padding: 5px 15px;
   flex-shrink: 0;
+  
 }
+#quickstart-guide {
+	width: 400px;	
+  	line-height: 20px;
+	text-justify: auto;
+}
+
 #info-box {
 	display: block;
 }

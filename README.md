@@ -1,18 +1,28 @@
-# Maxwell's Demon
+# Maxwell's Game
 
 An outreach project I am working on for the Natalia Ares Group in the University of Oxford. This is my first time playing with javascript, hopefully the game won't be too buggy :wink:.
 
 ## Quickstart Guide
 
-- Use the  `space bar` on your keyboard to open and close the central trapdoor
-- Try to collect all the (hot) fast moving red  particles on one side of the box and the (cold) slow moving blue particles on the other side of the box.
+- Use the  `space bar` on your keyboard to open the central trapdoor
+- Try to collect the (red) hot fast-moving particles on one side of the divide and the (blue) cold slow-moving particles on the other.
 - Can you create order from disorder? Click [here](https://brandonseverin.github.io/maxwellsdemon/) to start playing.
+
+## Introduction
+
+Here is a [short video excerpt](https://www.youtube.com/watch?v=11QkX4u6RJg) explaining the Maxwell's Demon thought experiment from Prof. Jim Al-Khalili's [*The Story of Information*](https://www.youtube.com/watch?v=qj7HH0PCqIE). 
+
+(more to follow)
 
 ## FAQs
 
 - *The `space bar` on my keyboard does not work. Can I still play the game?*
 
   Yes you can! You can use the `X` or the `O` key to open and close the trapdoor.
+  
+- *I resized my window, did I break the game?*
+
+  The Demon in Maxwell's thought experiment was not allowed to change the size of the box. If you resize your window you must refresh the page and start the game again.
 
 ## Acknowledgements 
 
