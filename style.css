@@ -30,9 +30,12 @@ body {
   
 }
 #quickstart-guide {
-	width: 400px;	
+	width: 450px;	
+	height: 100px;
   	line-height: 20px;
 	text-justify: auto;
+
+	overflow-y: auto; /* add vertical scroll bar */
 }
 #quickstart-guide a {
 	text-decoration: none;
