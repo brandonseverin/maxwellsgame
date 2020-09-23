@@ -25,7 +25,7 @@ Here is a [short video excerpt](https://www.youtube.com/watch?v=11QkX4u6RJg) exp
   
 - *I resized my window, did I break the game?*
 
-  The Demon in Maxwell's thought experiment was not allowed to change the size of the box. If you resize your window you must refresh the page and start the game again.
+  The Demon in Maxwell's thought experiment was not allowed to change the size of the box. If you resize your window the game automatically restarts itself and you lose your particle sorting progress :cry:.
 
 ## Acknowledgements 
 
