@@ -63,18 +63,55 @@ document.addEventListener("touchstart", touchStartHandler, false);
 //document.addEventListener('touchmove', process_touchmove, false);
 //document.addEventListener('touchcancel', process_touchcancel, false);
 document.addEventListener('touchend', touchEndHandler, false);
-// frame rate of game 
-//window.onload = ()=> {
-//	var canvas = document.querySelector('canvas');
-//	var c = canvas.getContext('2d')
-	//c=document.getElementById('gc');
-	//cc=c.getContext('2d');
-//	setInterval(update, 1000/30); 
-	//c.addEventListener('mousemove',function(e) {
-	//		p1y=e.clientY-ph/2;
-	//})
-//}
+// Preven scrolling when touching the canvas - speciffically for touchscreen devices
+document.body.addEventListener("touchstart", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
+document.body.addEventListener("touchend", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
+document.body.addEventListener("touchmove", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
 
+// TEsting mozilla touch events
+// Load touch events when starting window
+function startup() {
+  var el = document.getElementById("canvas");
+  el.addEventListener("touchstart", handleStart, false);
+  el.addEventListener("touchend", handleEnd, false);
+  el.addEventListener("touchcancel", handleCancel, false);
+  el.addEventListener("touchmove", handleMove, false);
+}
+
+document.addEventListener("DOMContentLoaded", startup);
+
+// define an array to track the touches
+var ongoingTouches = [];
+function handleStart(evt) {
+  evt.preventDefault();
+  console.log("touchstart.");
+  var el = document.getElementById("canvas");
+  var ctx = el.getContext("2d");
+  var touches = evt.changedTouches;
+        
+  for (var i = 0; i < touches.length; i++) {
+    console.log("touchstart:" + i + "...");
+    ongoingTouches.push(copyTouch(touches[i]));
+    var color = colorForTouch(touches[i]);
+    ctx.beginPath();
+    ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false);  // a circle at the start
+    ctx.fillStyle = color;
+    ctx.fill();
+    console.log("touchstart:" + i + ".");
+  }
+}
 // Can use Kuler to create/choose color palettes
 var colorArray1 = [
 	'#ffaa33',
@@ -147,21 +184,21 @@ function keyUpHandler(e){
 	e.preventDefault();
 }
 function mouseDownHandler(e) {
-	//e.preventDefault();
+	e.preventDefault();
 	spacePressed = true;
 }
 
 function mouseUpHandler(e) {
-	//e.preventDefault();
 	spacePressed = false;
+	e.preventDefault();
 }
 function touchStartHandler(e){
-	//e.preventDefault();
 	spacedPressed = true;
+	e.preventDefault();
 }
 function touchEndHandler(e){
-	//e.preventDefault;
 	spacePressed = false;
+	e.preventDefault;
 }
 
 
