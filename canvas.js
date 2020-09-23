@@ -47,8 +47,10 @@ window.addEventListener('resize', function() {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 
-	init();
+	// Redraw walls/gates and balls on canvas
+	// when the window is resized.
 	initWall();
+	init();
 })
 
 // Add event listeners for arrow key control of gate
@@ -103,22 +105,9 @@ var mingateWidth= 10;
 var gateWidth = mingateWidth;
 var mingateHeight = gapSize;
 var gateHeight = mingateHeight;
-var gateY = innerHeight/2 - gateHeight/2;
-var gateX = innerWidth/2 - gateWidth/2;
 var gateColor = 'white';
-
-var wallWidth = gateWidth * 1.1;
-var wallHeight = innerHeight/2 - gapSize/2;
 var wallColor = 'black';
-
-var centerWallTop_posX = innerWidth/2 - wallWidth/2;
-var centerWallTop_posY = 0 ; 
-var centerWall_Width = wallWidth;
-var centerWall_lenY = innerHeight/2 - gapSize/2;
-
-// Bottom wall variables
-var lowerWallX = innerWidth/2 - wallWidth/2;
-var lowerWallY = innerHeight/2 + gapSize/2;
+// Wall and gate coordinates are now defined in the initWall(); function
 
 // add arrow key control to gate
 var upPressed = false;
@@ -485,35 +474,25 @@ function Circle(x, y, dx, dy, radius, color) {
 }
 
 // Initialisations of central wall coordinates
+// Nota Bene: What I do here (i.e. defining global variables inside a function)
+// is very naughty and shouldn't be done 
+// But I was strapped for time and needed a quick fix.
+// Plus it enabled me to learn about the window object in javascript
 function initWall(){
-	var gateWidth = mingateWidth;
-	var mingateHeight = gapSize;
-	var gateHeight = mingateHeight;
-	var gateY = innerHeight/2 - gateHeight/2;
-	var gateX = innerWidth/2 - gateWidth/2;
-	var gateColor = 'white';
+	 window.gateY = window.innerHeight/2 - gateHeight/2;
+	 window.gateX = window.innerWidth/2 - gateWidth/2;
 
-	var wallWidth = gateWidth * 1.1;
-	var wallHeight = innerHeight/2 - gapSize/2;
-	var wallColor = 'black';
+	 window.wallWidth = window.mingateWidth * 1.1;
+	 window.wallHeight = window.innerHeight/2 - gapSize/2;
 
-	var centerWallTop_posX = innerWidth/2 - wallWidth/2;
-	var centerWallTop_posY = 0 ; 
-	var centerWall_Width = wallWidth;
-	var centerWall_lenY = innerHeight/2 - gapSize/2;
+	 window.centerWallTop_posX = window.innerWidth/2 - window.wallWidth/2;
+	 window.centerWallTop_posY = 0 ; 
+	 window.centerWall_Width = window.wallWidth;
+	 window.centerWall_lenY = window.innerHeight/2 - gapSize/2;
 
-	// Bottom wall variables
-	var lowerWallX = innerWidth/2 - wallWidth/2;
-	var lowerWallY = innerHeight/2 + gapSize/2;
-
-	//wallArray = [];
-	//	
-	//let x = innerWidth/2;
-	//let y = 0;
-	//let w = wallWidth;
-	//let h = wallHeight;
-
-	//wallArray.push(x,y,w,h);
+	// Bwindow.ottom wall variables
+	 window.lowerWallX = window.innerWidth/2 - window.wallWidth/2;
+	 window.lowerWallY = window.innerHeight/2 + gapSize/2;
 
 }
 
@@ -567,12 +546,12 @@ function animate() {
 
 	// Draw center wall top
 	//centerWall();
-	centerWall(wallColor, centerWallTop_posX, centerWallTop_posY, wallWidth, centerWall_lenY);	
+	centerWall(wallColor, window.centerWallTop_posX, window.centerWallTop_posY, window.wallWidth, window.centerWall_lenY);	
 
 	// Draw lower center wall
-	centerWall(wallColor, lowerWallX, lowerWallY, wallWidth, wallHeight);
+	centerWall(wallColor, window.lowerWallX, window.lowerWallY, window.wallWidth, window.wallHeight);
 	// create gate
-	centerWall(gateColor, gateX, gateY, gateWidth, gateHeight);
+	centerWall(gateColor, window.gateX, window.gateY, gateWidth, gateHeight);
 
 	// Add keyboard control to paddle
 	gateControl();
@@ -592,6 +571,7 @@ function animate() {
 	console.log('animating: fdskaljlas')
 }
 
+initWall();
 init();
 var interval = setInterval(animate,10); // control frame per second of animation
 //animate();
