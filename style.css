@@ -4,10 +4,19 @@
 html,
 body {
   font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   line-height: 10px;
   cursor: crosshair;
+  overflow: hidden; /* remove scrollbars*/
+}
+canvas {
+	/* make canvas the size of the body,*/
+	/* nothing more, nothing less*/
+	width: 100%;
+	height: 100%;
 }
 
 .container {
