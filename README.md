@@ -7,7 +7,7 @@ An outreach project I am working on for the Natalia Ares Group in the University
 - Use the  `space bar` on your keyboard to open the central trapdoor
 - Try to collect the (red) hot fast-moving particles on one side of the divide and the (blue) cold slow-moving particles on the other, this lowers the Shannon entropy. 
 - Try and lower the Shannon entropy and post your lowest entropy score to Instagram or Twitter using #IFOX2020 #Entropy #MaxwellsGame
-- Can you create order from disorder? Click [here](https://brandonseverin.github.io/maxwellsdemon/) to start playing.
+- Can you create order from disorder? Click [here](https://brandonseverin.github.io/maxwellsgame/) to start playing.
 
 ## About
 
