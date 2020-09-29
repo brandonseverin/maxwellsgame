@@ -289,6 +289,7 @@ function scoring(){
 	//c.fillText(S, 100,innerHeight-100);
 	// Print Shannon Entropy to html with 5 significant figures 
 	document.getElementById('ShannonEntropy').innerHTML = Number(S.toPrecision(5));
+	document.getElementById('ShannonEntropy2').innerHTML = Number(S.toPrecision(5));
 
 
 	// Return ball numbers
