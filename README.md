@@ -29,7 +29,7 @@ Here is a [short video excerpt](https://www.youtube.com/watch?v=11QkX4u6RJg) exp
   
 - *How do I return back to the booth?*
 
-  By clicking [here]()(https://if-oxford-explorazone.vfairs.com/) you can return to the IFOxford Explorazone Digital where you can navigate to the "Information Engines" booth/stall.
+  By clicking [here](https://if-oxford-explorazone.vfairs.com/) you can return to the IFOxford Explorazone Digital where you can navigate to the "Information Engines" booth/stall.
 
 ## Acknowledgements 
 
