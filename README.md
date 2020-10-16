@@ -16,7 +16,6 @@ The player takes the role of the Demon in [James Clerk Maxwell's](https://en.wik
 The Natalia Ares Group has made a short [video](https://www.youtube.com/watch?v=bIMV4R6J-GU&list=PLGKIxJq5wQ-vGw8SmPQxz4WoYzbQ9mOt_&index=4) explaining Maxwell's Game which is part of a [larger series](https://www.youtube.com/playlist?list=PLGKIxJq5wQ-vGw8SmPQxz4WoYzbQ9mOt_) on entropy and thermodynamics. 
 Here is a [short video excerpt](https://www.youtube.com/watch?v=11QkX4u6RJg) explaining the Maxwell's Demon thought experiment from Prof. Jim Al-Khalili's [*The Story of Information*](https://www.youtube.com/watch?v=qj7HH0PCqIE). 
 
-(more to follow)
 
 ## FAQs
 
