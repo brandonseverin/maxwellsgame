@@ -26,6 +26,10 @@ Here is a [short video excerpt](https://www.youtube.com/watch?v=11QkX4u6RJg) exp
 - *I resized my window, did I break the game?*
 
   The Demon in Maxwell's thought experiment was not allowed to change the size of the box. If you resize your window the game automatically restarts itself and you lose your particle sorting progress :cry:.
+  
+- *How do I return back to the booth?*
+
+  By clicking [here]()(https://if-oxford-explorazone.vfairs.com/) you can return to the IFOxford Explorazone Digital where you can navigate to the "Information Engines" booth/stall.
 
 ## Acknowledgements 
 
