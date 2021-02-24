@@ -148,6 +148,7 @@ function keyUpHandler(e){
 	}
 
 	numOpen ++;
+	updateCost(includeCost);
 	e.preventDefault();
 }
 function mouseDownHandler(e) {
@@ -158,6 +159,7 @@ function mouseDownHandler(e) {
 function mouseUpHandler(e) {
 	//e.preventDefault();
 	numOpen ++;
+	updateCost(includeCost);
 	spacePressed = false;
 }
 function touchStartHandler(e){
@@ -167,6 +169,7 @@ function touchStartHandler(e){
 function touchEndHandler(e){
 	//e.preventDefault;
 	numOpen ++;
+	updateCost(includeCost);
 	spacePressed = false;
 }
 
@@ -229,20 +232,38 @@ function factorial(n) {
 // Include infomation erasure cost bool function
 function toggleCost(){
 	includeCost = !includeCost;
+
 	if (includeCost == true) {
 
-		let k  = numOpen * 1.381 * (10**-23) * Math.LN2
-		console.log('k')
-		document.getElementById('info-cost').innerHTML = Number(k.toExponential(2));
+		document.getElementById('info-equals').innerHTML =  ' = ';
+		document.getElementById('info-cost').innerHTML =  calculateCost();
+	}
+	if (includeCost === false) {
+
+		document.getElementById('info-equals').innerHTML =  ' ';
+		document.getElementById('info-cost').innerHTML = ' ' ;
+		
+	}
+}
+function updateCost(includeCost){
+
+	if (includeCost == true) {
+
+		document.getElementById('info-cost').innerHTML = calculateCost();
 	}
 	if (includeCost === false) {
 
 		document.getElementById('info-cost').innerHTML = ' ' ;
 		
-	}}
-
-function showCost(includeCost){
+	}
+}
+function calculateCost(){
 // need a function to update costs	
+	// Cost is kbLn2 * number of times the user releases the button.
+	let k  = numOpen * 1.381 * (10**-23) * Math.LN2;
+	// convert to standard form
+	k = Number(k.toExponential(3));
+	return k;
 }
 // Shannon Entropy function 
 function shannonEntropy(lslow, lfast, rslow, rfast, includeCost) {
@@ -259,7 +280,7 @@ function shannonEntropy(lslow, lfast, rslow, rfast, includeCost) {
 	S = Math.log(omega);
 	
 	// Include kBln2 cost with informational cost
-	if (includeCost === true) {
+	if (includeCost == true) {
 		S = Math.log(omega) + numOpen * 1.381 * (10**-23) * Math.LN2
 
 	}
@@ -297,20 +318,8 @@ function scoring(){
 			rightRed++;
 			c.fillStyle = 'white';
 		}
-		// game over alert
-		//if(leftBlue > 0 && rightRed == 0 ){
-			//alert("GAME OVER");
-			//document.location.reload();
-			//clearInterval(interval);
-		//}
 
 	}
-	// (Debgging) Display to Canvas
-	//c.fillStyle = 'white';
-	//c.fillText(leftRed, 100,100);	
-	//c.fillText(leftBlue, 200,100);
-	//c.fillText(rightBlue, innerWidth - 100,100);
-	//c.fillText(rightRed, innerWidth - 200,100);
 	
 	// Calculate Shannon Entropy 
 	S = shannonEntropy(leftBlue, leftRed, rightBlue, rightRed, includeCost);
@@ -607,6 +616,8 @@ function animate() {
 	}
 
 	// scoring
+	// include entropic cost
+	calculateCost();
 	let count = scoring();
 	//GAme over alert
 	alertGameOver(count.leftSlow, count.leftFast, count.rightSlow, count.rightFast);
