@@ -101,6 +101,7 @@ var minRadius = initradius;
 var gapSize = maxRadius * 8;
 
 // Gate variables
+var numOpen = 0;
 var mingateWidth= 10;
 var gateWidth = mingateWidth;
 var mingateHeight = gapSize;
@@ -109,6 +110,8 @@ var gateColor = 'white';
 var wallColor = 'black';
 // Wall and gate coordinates are now defined in the initWall(); function
 
+// Include informational cost in scoring bool
+var includeCost = false;
 // add arrow key control to gate
 var upPressed = false;
 var downPressed = false;
@@ -144,6 +147,7 @@ function keyUpHandler(e){
 		spacePressed = false;
 	}
 
+	numOpen ++;
 	e.preventDefault();
 }
 function mouseDownHandler(e) {
@@ -153,6 +157,7 @@ function mouseDownHandler(e) {
 
 function mouseUpHandler(e) {
 	//e.preventDefault();
+	numOpen ++;
 	spacePressed = false;
 }
 function touchStartHandler(e){
@@ -161,6 +166,7 @@ function touchStartHandler(e){
 }
 function touchEndHandler(e){
 	//e.preventDefault;
+	numOpen ++;
 	spacePressed = false;
 }
 
@@ -220,8 +226,26 @@ function factorial(n) {
   return n ? n * factorial(n - 1) : 1;
 }
 
+// Include infomation erasure cost bool function
+function toggleCost(){
+	includeCost = !includeCost;
+	if (includeCost == true) {
+
+		let k  = numOpen * 1.381 * (10**-23) * Math.LN2
+		console.log('k')
+		document.getElementById('info-cost').innerHTML = Number(k.toExponential(2));
+	}
+	if (includeCost === false) {
+
+		document.getElementById('info-cost').innerHTML = ' ' ;
+		
+	}}
+
+function showCost(includeCost){
+// need a function to update costs	
+}
 // Shannon Entropy function 
-function shannonEntropy(lslow, lfast, rslow, rfast) {
+function shannonEntropy(lslow, lfast, rslow, rfast, includeCost) {
 	let slowTotal = lslow + rslow;
 	let slown = Math.min(lslow, rslow);
 	let fastTotal = lfast + rfast;
@@ -233,7 +257,12 @@ function shannonEntropy(lslow, lfast, rslow, rfast) {
 	omega = factorial(fastTotal)/(factorial(fastn) * factorial(fastTotal- fastn)) * factorial(slowTotal)/(factorial(slown) * factorial(slowTotal - slown));
 
 	S = Math.log(omega);
+	
+	// Include kBln2 cost with informational cost
+	if (includeCost === true) {
+		S = Math.log(omega) + numOpen * 1.381 * (10**-23) * Math.LN2
 
+	}
 	return S;
 }
 
@@ -284,7 +313,7 @@ function scoring(){
 	//c.fillText(rightRed, innerWidth - 200,100);
 	
 	// Calculate Shannon Entropy 
-	S = shannonEntropy(leftBlue, leftRed, rightBlue, rightRed);
+	S = shannonEntropy(leftBlue, leftRed, rightBlue, rightRed, includeCost);
 	// (Debugging) Print Shannon entropy to canvas
 	//c.fillText(S, 100,innerHeight-100);
 	// Print Shannon Entropy to html with 5 significant figures 
@@ -383,11 +412,25 @@ function Circle(x, y, dx, dy, radius, color) {
 		detectCollisions();
 		// Check collisions with canvas edges
 		if(this.x + this.radius > innerWidth || this.x - this.radius < 0) {
-				this.dx = -this.dx;
+			this.dx = -this.dx;
+
 		}
 
+		// Want to add a bit of randomness so balls don't get stuck
 		if(this.y + this.radius > innerHeight || this.y - this.radius < 0) {
-			this.dy = -this.dy;
+
+			this.dy = - this.dy;
+			//let mag = Math.sqrt(this.dx**2 + this.dy**2);
+			//let theta = Math.atan2(this.dy, this.dx);
+			//// alter reflection angle within +- rFactor percentage of theta
+			//let rFactor = 0.08;
+			//let bDelta = (-1)**(Math.floor(Math.random() * 1)) * Math.random()*theta*rFactor;
+			//this.dy = mag * Math.sin(-theta + bDelta);
+			//this.dx = mag * Math.cos(-theta + bDelta);
+			console.log('random_bounce');
+
+
+
 		}
 		//// Interactions with top central wall
 		//if(this.x + this.radius < centerWallTop_posX + wallWidth && this.x + this.radius > centerWallTop_posX && this.y + this.radius < centerWallTop_posY + centerWall_lenY) {
@@ -406,11 +449,12 @@ function Circle(x, y, dx, dy, radius, color) {
 			&& this.y > gateY && this.y < gateY + gateHeight){
 			this.dx = -this.dx;
 		}
-		// Write a simple collision function
+		// Write a simple Horizontal for central wall collision function
 		this.simpleHCollision =  function (xPos, yPos, xWidth, yLength){
 			// Simple Gate collision
 			if (this.x > xPos && this.x < xPos + xWidth
 				&& this.y > yPos && this.y < yPos + yLength){
+
 				this.dx = -this.dx;
 			}
 		}
@@ -455,7 +499,7 @@ function Circle(x, y, dx, dy, radius, color) {
 		// Update velocity
 		this.y += this.dy;
 		this.x += this.dx;
-		console.log('circle updated')
+		//console.log('circle updated')
 		
 			
 		// intereactivity
@@ -568,7 +612,7 @@ function animate() {
 	alertGameOver(count.leftSlow, count.leftFast, count.rightSlow, count.rightFast);
 	
 	
-	console.log('animating: fdskaljlas')
+	//console.log('animating: fdskaljlas')
 }
 
 initWall();
