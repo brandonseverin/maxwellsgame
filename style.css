@@ -38,7 +38,7 @@ canvas {
   flex-shrink: 0;
   
 }
-#quickstart-guide {
+.quickstart-guide {
 	width: 450px;	
 	height: 100px;
   	line-height: 20px;
@@ -47,11 +47,11 @@ canvas {
 	overflow-y: auto; /* add vertical scroll bar */
 	scrollbar-color: #868686 #f0f8ff0d;
 }
-#quickstart-guide a {
+.quickstart-guide a {
 	text-decoration: none;
 	color: white;
 }
-#quickstart-guide a:hover {
+.quickstart-guide a:hover {
   color: black;
   background-color: white;
 }
