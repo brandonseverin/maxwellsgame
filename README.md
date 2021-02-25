@@ -18,7 +18,7 @@ Here is a [short video excerpt](https://www.youtube.com/watch?v=11QkX4u6RJg) exp
 
 ## Additional Features
 
-Due to popular request one can now incorporate the cost of information erasure into the entropy calculation which can be toggled on/off via a button (ERASURE COST) in the quickstart guide box.
+Due to popular demand one can now incorporate the cost of information erasure into the entropy calculation which can be toggled on/off via a button (ERASURE COST) in the quickstart guide box.
 
 ## FAQs
 
