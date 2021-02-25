@@ -112,6 +112,7 @@ var wallColor = 'black';
 
 // Include informational cost in scoring bool
 var includeCost = false;
+var kB = 1.381 * (10**-23); // Boltzamns constant
 // add arrow key control to gate
 var upPressed = false;
 var downPressed = false;
@@ -153,14 +154,14 @@ function keyUpHandler(e){
 }
 function mouseDownHandler(e) {
 	//e.preventDefault();
-	spacePressed = true;
+	//spacePressed = true;
 }
 
 function mouseUpHandler(e) {
 	//e.preventDefault();
-	numOpen ++;
-	updateCost(includeCost);
-	spacePressed = false;
+	//numOpen ++;
+	//updateCost(includeCost);
+	//spacePressed = false;
 }
 function touchStartHandler(e){
 	//e.preventDefault();
@@ -235,10 +236,15 @@ function toggleCost(){
 
 	if (includeCost == true) {
 
-		document.getElementById('info-equals').innerHTML =  ' = ';
-		document.getElementById('info-cost').innerHTML =  calculateCost();
+		document.getElementById('erasure-cost').style.color= 'green';
+		document.getElementById('erasure-cost').style.background= 'white';
+		//document.getElementById('info-equals').innerHTML =  ' (J/K) = ';
+		//document.getElementById('info-cost').innerHTML =  calculateCost();
 	}
 	if (includeCost === false) {
+
+		document.getElementById('erasure-cost').style.color= 'white';
+		document.getElementById('erasure-cost').style.background= 'none';
 
 		document.getElementById('info-equals').innerHTML =  ' ';
 		document.getElementById('info-cost').innerHTML = ' ' ;
@@ -249,7 +255,7 @@ function updateCost(includeCost){
 
 	if (includeCost == true) {
 
-		document.getElementById('info-cost').innerHTML = calculateCost();
+		//document.getElementById('info-cost').innerHTML = calculateCost();
 	}
 	if (includeCost === false) {
 
@@ -260,10 +266,10 @@ function updateCost(includeCost){
 function calculateCost(){
 // need a function to update costs	
 	// Cost is kbLn2 * number of times the user releases the button.
-	let k  = numOpen * 1.381 * (10**-23) * Math.LN2;
+	let cost  = numOpen * kB * Math.LN2;
 	// convert to standard form
-	k = Number(k.toExponential(3));
-	return k;
+	cost = Number(cost.toExponential(3));
+	return cost;
 }
 // Shannon Entropy function 
 function shannonEntropy(lslow, lfast, rslow, rfast, includeCost) {
@@ -273,15 +279,17 @@ function shannonEntropy(lslow, lfast, rslow, rfast, includeCost) {
 	let fastn = Math.min(lfast, rfast);
 	let omega;
 	let S;
+	//let convFactor = 1; // debugging
+	let convFactor = kB; // Boltzamns constant
 
 
 	omega = factorial(fastTotal)/(factorial(fastn) * factorial(fastTotal- fastn)) * factorial(slowTotal)/(factorial(slown) * factorial(slowTotal - slown));
 
-	S = Math.log(omega);
+	S = convFactor * Math.log(omega);
 	
 	// Include kBln2 cost with informational cost
 	if (includeCost == true) {
-		S = Math.log(omega) + numOpen * 1.381 * (10**-23) * Math.LN2
+		S = convFactor * (Math.log(omega) + numOpen*Math.LN2);
 
 	}
 	return S;
