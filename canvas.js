@@ -86,7 +86,7 @@ var colorArray1 = [
 ];
 // Circle properties
 var initradius = 10;
-var numCircles = 4;
+var numCircles = 20;
 var fastCircleSpeed = 8; // original speed is 4 for fast, greatest speed shouldn't be greater than the smallest object (10)
 var slowCircleSpeed = 1; // original speed is 1 for slow
 var colorArray = ['red','blue'];
@@ -236,10 +236,15 @@ function toggleCost(){
 
 	if (includeCost == true) {
 
-		document.getElementById('info-equals').innerHTML =  ' = ';
-		document.getElementById('info-cost').innerHTML =  calculateCost();
+		document.getElementById('erasure-cost').style.color= 'green';
+		document.getElementById('erasure-cost').style.background= 'white';
+		//document.getElementById('info-equals').innerHTML =  ' (J/K) = ';
+		//document.getElementById('info-cost').innerHTML =  calculateCost();
 	}
 	if (includeCost === false) {
+
+		document.getElementById('erasure-cost').style.color= 'white';
+		document.getElementById('erasure-cost').style.background= 'none';
 
 		document.getElementById('info-equals').innerHTML =  ' ';
 		document.getElementById('info-cost').innerHTML = ' ' ;
@@ -250,7 +255,7 @@ function updateCost(includeCost){
 
 	if (includeCost == true) {
 
-		document.getElementById('info-cost').innerHTML = calculateCost();
+		//document.getElementById('info-cost').innerHTML = calculateCost();
 	}
 	if (includeCost === false) {
 

@@ -39,6 +39,9 @@ canvas {
   flex-shrink: 0;
   
 }
+#subtitle {
+  margin-bottom: 0.5rem;
+}
 #quickstart-guide {
 	width: 450px;	
 	height: 100px;
@@ -67,10 +70,24 @@ canvas {
   margin-bottom: 0.3rem;
 }
 #scoring h3 a {
+  margin-left: 1rem;
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
 }
-#info-box {
+.erasure-cost {
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  padding: 2px 4px;
+  margin-right: 10px;
+}
+
+.erasure-cost:hover {
+  color: black;
+  background-color: white;
+}#info-box {
 	display: block;
 }
 
