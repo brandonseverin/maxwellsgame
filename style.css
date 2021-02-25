@@ -11,6 +11,7 @@ body {
   line-height: 10px;
   cursor: crosshair;
   overflow: hidden; /* remove scrollbars*/
+  scrollbar-color: red;
 }
 canvas {
 	/* make canvas the size of the body,*/
@@ -38,7 +39,10 @@ canvas {
   flex-shrink: 0;
   
 }
-.quickstart-guide {
+#subtitle {
+  margin-bottom: 0.5rem;
+}
+#quickstart-guide {
 	width: 450px;	
 	height: 100px;
   	line-height: 20px;
@@ -47,11 +51,11 @@ canvas {
 	overflow-y: auto; /* add vertical scroll bar */
 	scrollbar-color: #868686 #f0f8ff0d;
 }
-.quickstart-guide a {
+#quickstart-guide a {
 	text-decoration: none;
 	color: white;
 }
-.quickstart-guide a:hover {
+#quickstart-guide a:hover {
   color: black;
   background-color: white;
 }
@@ -62,14 +66,26 @@ canvas {
   align-items: baseline;
 }
 #scoring p {
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
 }
 #scoring h3 a {
+  margin-left: 1rem;
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
 }
-#info-box {
+.erasure-cost {
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  padding: 2px 4px;
+  margin-right: 10px;
+}
+
+.erasure-cost:hover {
+  color: black;
+  background-color: white;
+}#info-box {
 	display: block;
 }
 
