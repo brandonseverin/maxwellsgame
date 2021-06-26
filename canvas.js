@@ -349,7 +349,7 @@ function scoring(){
 // Game over alert
 function alertGameOver(lslow, lfast, rslow, rfast){
 	if ((lslow == 0 && rfast ==0) || (lfast == 0 && rslow == 0)){
-		alert("GAME OVER");
+		alert("GAME OVER. Look for the envelope on the top shelf :)");
 		//document.location.reload(); // reload page
 		clearInterval(interval); // necessary for google chrome to reload the page
 	}
