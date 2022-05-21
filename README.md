@@ -1,5 +1,7 @@
 # Maxwell's Game
 
+Play here: [https://brandonseverin.github.io/maxwellsgame/](https://brandonseverin.github.io/maxwellsgame/)
+
 An outreach project I am working on for the Natalia Ares Group in the University of Oxford. This is my first time playing with javascript, hopefully the game won't be too buggy :wink:.
 
 ## Quickstart Guide
